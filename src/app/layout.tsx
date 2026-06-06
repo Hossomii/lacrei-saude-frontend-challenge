@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Providers } from "@/lib/providers";
+import { Header } from "@/components/Header/Header";
 
 export const metadata: Metadata = {
   title: "Lacrei Saúde | Desafio Front-end",
@@ -15,7 +16,10 @@ export default function RootLayout({
   return (
     <html lang="pt-BR">
       <body>
-        <Providers>{children}</Providers>
+        <Providers>
+          <Header />
+          {children}
+        </Providers>
       </body>
     </html>
   );
