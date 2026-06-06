@@ -26,19 +26,28 @@ const Content = styled.div`
 `;
 
 const Logo = styled(Link)`
-  display: flex;
-  flex-direction: column;
+  display: inline-flex;
+  align-items: center;
+  gap: ${({ theme }) => theme.spacing.sm};
 
   color: ${({ theme }) => theme.colors.text.accent};
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   font-weight: 800;
-  line-height: 1.1;
+  line-height: 1;
 `;
 
-const LogoSubtitle = styled.span`
-  color: ${({ theme }) => theme.colors.text.body};
-  font-size: 0.75rem;
-  font-weight: 600;
+const LogoSymbol = styled.span`
+  color: ${({ theme }) => theme.colors.text.accent};
+
+  font-size: 1.5rem;
+  font-weight: 900;
+  letter-spacing: -0.08em;
+
+  line-height: 1;
+`;
+
+const LogoName = styled.span`
+  color: ${({ theme }) => theme.colors.text.accent};
 `;
 
 const Navigation = styled.nav<{ $isOpen: boolean }>`
@@ -123,8 +132,9 @@ export function Header() {
       <Container>
         <Content>
           <Logo href="/" aria-label="Página inicial da Lacrei Saúde">
-            Lacrei Saúde
-            <LogoSubtitle>Cuidado inclusivo</LogoSubtitle>
+            <LogoSymbol aria-hidden="true">LS</LogoSymbol>
+
+            <LogoName>Lacrei Saúde</LogoName>
           </Logo>
 
           <Navigation $isOpen={isMenuOpen} aria-label="Navegação principal">
@@ -132,10 +142,7 @@ export function Header() {
               Início
             </NavLink>
 
-            <NavLink
-              href="/profissionais"
-              onClick={() => setIsMenuOpen(false)}
-            >
+            <NavLink href="/profissionais" onClick={() => setIsMenuOpen(false)}>
               Profissionais
             </NavLink>
           </Navigation>
