@@ -6,16 +6,6 @@
 Aplicação desenvolvida para o processo seletivo de voluntariado da Lacrei Saúde
 </p>
 
-<p align="center">
-  <img src="https://img.shields.io/badge/Next.js-16-black?style=for-the-badge&logo=nextdotjs"/>
-  <img src="https://img.shields.io/badge/React-19-61DAFB?style=for-the-badge&logo=react&logoColor=black"/>
-  <img src="https://img.shields.io/badge/TypeScript-5-3178C6?style=for-the-badge&logo=typescript&logoColor=white"/>
-  <img src="https://img.shields.io/badge/Styled--Components-DB7093?style=for-the-badge&logo=styledcomponents&logoColor=white"/>
-  <img src="https://img.shields.io/badge/Jest-C21325?style=for-the-badge&logo=jest&logoColor=white"/>
-  <img src="https://img.shields.io/badge/Testing%20Library-E33332?style=for-the-badge&logo=testinglibrary&logoColor=white"/>
-  <img src="https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel"/>
-</p>
-
 ---
 
 # Lacrei Saúde Challenge
