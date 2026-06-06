@@ -3,6 +3,9 @@
 import Link from "next/link";
 import styled from "styled-components";
 
+import { FaFacebookF, FaInstagram, FaLinkedinIn } from "react-icons/fa";
+import { MdEmail } from "react-icons/md";
+
 import { Container } from "../Layout/Container";
 
 const Wrapper = styled.footer`
@@ -63,6 +66,43 @@ const FooterLink = styled(Link)`
   }
 `;
 
+const SocialList = styled.div`
+  display: flex;
+  gap: ${({ theme }) => theme.spacing.sm};
+  flex-wrap: wrap;
+`;
+
+const SocialLink = styled.a`
+  width: 40px;
+  height: 40px;
+
+  border-radius: 50%;
+  border: 1px solid ${({ theme }) => theme.colors.border.default};
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  color: ${({ theme }) => theme.colors.text.accent};
+  background: ${({ theme }) => theme.colors.background.default};
+
+  transition:
+    background 150ms ease,
+    color 150ms ease,
+    border-color 150ms ease;
+
+  &:hover {
+    background: ${({ theme }) => theme.colors.background.accent};
+    color: ${({ theme }) => theme.colors.background.default};
+    border-color: ${({ theme }) => theme.colors.background.accent};
+  }
+
+  &:focus-visible {
+    outline: 3px solid ${({ theme }) => theme.colors.border.accent};
+    outline-offset: 3px;
+  }
+`;
+
 export function Footer() {
   return (
     <Wrapper>
@@ -70,6 +110,27 @@ export function Footer() {
         <Content>
           <Brand>
             <Title>Lacrei Saúde</Title>
+
+            <SocialList aria-label="Redes sociais da Lacrei Saúde">
+              <SocialLink href="#" aria-label="Instagram da Lacrei Saúde">
+                <FaInstagram aria-hidden="true" />
+              </SocialLink>
+
+              <SocialLink href="#" aria-label="LinkedIn da Lacrei Saúde">
+                <FaLinkedinIn aria-hidden="true" />
+              </SocialLink>
+
+              <SocialLink href="#" aria-label="Facebook da Lacrei Saúde">
+                <FaFacebookF aria-hidden="true" />
+              </SocialLink>
+
+              <SocialLink
+                href="mailto:contato@lacreisaude.com.br"
+                aria-label="Enviar e-mail para Lacrei Saúde"
+              >
+                <MdEmail aria-hidden="true" />
+              </SocialLink>
+            </SocialList>
 
             <Text>
               Conectando pessoas LGBTQIA+ a profissionais de saúde preparados
