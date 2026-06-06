@@ -66,17 +66,14 @@ const Actions = styled.div`
 `;
 
 const Illustration = styled.div`
-  min-height: 320px;
+  min-height: 360px;
 
-  border-radius: 24px;
+  border-radius: 28px;
 
   background:
-    radial-gradient(
-      circle at 20% 20%,
-      rgba(255, 255, 255, 0.7),
-      transparent 18%
-    ),
-    linear-gradient(135deg, #f5fffb 0%, #ffffff 45%, #dff2ed 100%);
+    radial-gradient(circle at 15% 20%, rgba(1, 135, 98, 0.22), transparent 28%),
+    radial-gradient(circle at 85% 80%, rgba(0, 78, 155, 0.2), transparent 30%),
+    linear-gradient(135deg, #ffffff 0%, #f0fbf7 45%, #dff2ed 100%);
 
   border: 1px solid ${({ theme }) => theme.colors.border.default};
 
@@ -92,23 +89,15 @@ const Illustration = styled.div`
   &::before {
     content: "";
     position: absolute;
-    width: 220px;
-    height: 220px;
+    width: 72%;
+    height: 72%;
     border-radius: 50%;
-    background: rgba(1, 135, 98, 0.16);
-    right: -40px;
-    top: -40px;
-  }
-
-  &::after {
-    content: "";
-    position: absolute;
-    width: 180px;
-    height: 180px;
-    border-radius: 50%;
-    background: rgba(0, 78, 155, 0.12);
-    left: -32px;
-    bottom: -32px;
+    background: linear-gradient(
+      135deg,
+      rgba(1, 135, 98, 0.18),
+      rgba(0, 78, 155, 0.14)
+    );
+    filter: blur(2px);
   }
 `;
 
@@ -116,32 +105,18 @@ const VisualCard = styled.div`
   position: relative;
   z-index: 1;
 
-  max-width: 320px;
+  max-width: 360px;
   padding: ${({ theme }) => theme.spacing.xl};
 
-  border-radius: 20px;
-  background: ${({ theme }) => theme.colors.background.default};
+  border-radius: 24px;
 
-  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.08);
+  background: rgba(255, 255, 255, 0.92);
+
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.12);
 
   display: flex;
   flex-direction: column;
   gap: ${({ theme }) => theme.spacing.md};
-`;
-
-const VisualIcon = styled.div`
-  width: 56px;
-  height: 56px;
-
-  border-radius: 50%;
-  background: ${({ theme }) => theme.colors.background.accent};
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  color: white;
-  font-weight: 900;
 `;
 
 const VisualTitle = styled.strong`
@@ -204,7 +179,6 @@ export function HeroSection() {
 
           <Illustration aria-label="Mensagem de acolhimento da Lacrei Saúde">
             <VisualCard>
-              <VisualIcon aria-hidden="true">LS</VisualIcon>
 
               <VisualTitle>
                 Saúde com respeito, segurança e acolhimento.
