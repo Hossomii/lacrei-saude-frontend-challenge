@@ -66,12 +66,22 @@ const Actions = styled.div`
 `;
 
 const Illustration = styled.div`
-  min-height: 280px;
+  min-height: 320px;
 
   border-radius: 24px;
+
   background:
-    radial-gradient(circle at top left, rgba(255, 255, 255, 0.25), transparent 30%),
-    linear-gradient(135deg, #018762 0%, #004e9b 100%);
+    radial-gradient(
+      circle at 20% 20%,
+      rgba(255, 255, 255, 0.7),
+      transparent 18%
+    ),
+    linear-gradient(135deg, #f5fffb 0%, #ffffff 45%, #dff2ed 100%);
+
+  border: 1px solid ${({ theme }) => theme.colors.border.default};
+
+  position: relative;
+  overflow: hidden;
 
   display: flex;
   align-items: center;
@@ -79,10 +89,84 @@ const Illustration = styled.div`
 
   padding: ${({ theme }) => theme.spacing.xl};
 
-  color: ${({ theme }) => theme.colors.background.default};
-  font-size: 2rem;
-  font-weight: 700;
-  text-align: center;
+  &::before {
+    content: "";
+    position: absolute;
+    width: 220px;
+    height: 220px;
+    border-radius: 50%;
+    background: rgba(1, 135, 98, 0.16);
+    right: -40px;
+    top: -40px;
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    background: rgba(0, 78, 155, 0.12);
+    left: -32px;
+    bottom: -32px;
+  }
+`;
+
+const VisualCard = styled.div`
+  position: relative;
+  z-index: 1;
+
+  max-width: 320px;
+  padding: ${({ theme }) => theme.spacing.xl};
+
+  border-radius: 20px;
+  background: ${({ theme }) => theme.colors.background.default};
+
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.08);
+
+  display: flex;
+  flex-direction: column;
+  gap: ${({ theme }) => theme.spacing.md};
+`;
+
+const VisualIcon = styled.div`
+  width: 56px;
+  height: 56px;
+
+  border-radius: 50%;
+  background: ${({ theme }) => theme.colors.background.accent};
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: white;
+  font-weight: 900;
+`;
+
+const VisualTitle = styled.strong`
+  color: ${({ theme }) => theme.colors.text.heading};
+  font-size: 1.25rem;
+  line-height: 1.3;
+`;
+
+const VisualText = styled.p`
+  color: ${({ theme }) => theme.colors.text.body};
+  line-height: 1.5;
+`;
+
+const PrideLine = styled.div`
+  height: 6px;
+  border-radius: 999px;
+
+  background: linear-gradient(
+    90deg,
+    #bc1c1c,
+    #e8a233,
+    #00b15c,
+    #4d8acb,
+    #28588a
+  );
 `;
 
 export function HeroSection() {
@@ -93,7 +177,9 @@ export function HeroSection() {
           <TextContent>
             <Badge>Cuidado inclusivo</Badge>
 
-            <Title>Encontre profissionais de saúde que respeitam quem você é.</Title>
+            <Title>
+              Encontre profissionais de saúde que respeitam quem você é.
+            </Title>
 
             <Description>
               A Lacrei Saúde conecta pessoas LGBTQIA+ a profissionais preparados
@@ -117,7 +203,20 @@ export function HeroSection() {
           </TextContent>
 
           <Illustration aria-label="Mensagem de acolhimento da Lacrei Saúde">
-            Saúde com respeito, segurança e acolhimento.
+            <VisualCard>
+              <VisualIcon aria-hidden="true">LS</VisualIcon>
+
+              <VisualTitle>
+                Saúde com respeito, segurança e acolhimento.
+              </VisualTitle>
+
+              <VisualText>
+                Encontre profissionais preparados para cuidar de você sem
+                julgamento.
+              </VisualText>
+
+              <PrideLine aria-hidden="true" />
+            </VisualCard>
           </Illustration>
         </HeroContent>
       </Container>
