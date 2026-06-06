@@ -39,7 +39,7 @@ O objetivo foi demonstrar conhecimentos em:
 # Preview
 
 <p align="center">
-  <img src="./public/sreenshots/home.png" width="900"/>
+  <img src="https://raw.githubusercontent.com/Hossomii/lacrei-saude-frontend-challenge/main/public/screenshots/home.png" width="900"/>
 </p>
 
 > Home / Página inicial
