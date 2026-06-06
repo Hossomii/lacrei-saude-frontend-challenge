@@ -244,7 +244,7 @@ Mesmo com essas limitações, buscou-se manter a experiência visual e estrutura
 </p>
 
 <p align="center">
-  https://lacrei-frontend-q28sylfgb-hossomiis-projects.vercel.app/
+  https://lacrei-frontend.vercel.app/
 </p>
 
 ---
