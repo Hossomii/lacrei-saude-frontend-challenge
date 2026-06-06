@@ -1,5 +1,5 @@
 <h3 align="center">
-🏳️‍🌈 Front-end Challenge — Lacrei Saúde
+🏳️‍🌈 Front-end Challenge Lacrei Saúde
 </h3>
 
 <p align="center">
