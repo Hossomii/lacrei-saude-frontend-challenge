@@ -109,19 +109,36 @@ const VisualCard = styled.div`
   padding: ${({ theme }) => theme.spacing.xl};
 
   border-radius: 24px;
+  border: 1px solid ${({ theme }) => theme.colors.border.default};
 
-  background: rgba(255, 255, 255, 0.92);
+  background: rgba(255, 255, 255, 0.95);
 
   box-shadow: 0 24px 60px rgba(0, 0, 0, 0.12);
 
   display: flex;
   flex-direction: column;
   gap: ${({ theme }) => theme.spacing.md};
+
+  &::before {
+    content: "";
+    height: 8px;
+
+    border-radius: 999px;
+
+    background: linear-gradient(
+      90deg,
+      #bc1c1c,
+      #e8a233,
+      #00b15c,
+      #4d8acb,
+      #28588a
+    );
+  }
 `;
 
 const VisualTitle = styled.strong`
   color: ${({ theme }) => theme.colors.text.heading};
-  font-size: 1.25rem;
+  font-size: 1.5rem;
   line-height: 1.3;
 `;
 

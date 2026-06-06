@@ -129,6 +129,13 @@ const SearchInput = styled.input`
   }
 `;
 
+const ResultsSummary = styled.p`
+  margin-bottom: ${({ theme }) => theme.spacing.lg};
+
+  color: ${({ theme }) => theme.colors.text.accent};
+  font-weight: 800;
+`;
+
 const Grid = styled.div`
   display: grid;
   gap: ${({ theme }) => theme.spacing.lg};
@@ -186,6 +193,10 @@ export default function ProfessionalsPage() {
 
             <Button>Pesquisar</Button>
           </SearchBox>
+
+          <ResultsSummary>
+            {professionals.length} profissionais encontrados
+          </ResultsSummary>
 
           <Grid>
             {professionals.map((professional) => (

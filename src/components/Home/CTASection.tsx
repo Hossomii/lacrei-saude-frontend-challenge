@@ -7,37 +7,46 @@ import { Container } from "@/components/Layout/Container";
 
 const Section = styled.section`
   padding: ${({ theme }) => theme.spacing.xxl} 0;
-`;
-
-const Card = styled.div`
-  position: relative;
-  overflow: hidden;
-
-  padding: ${({ theme }) => theme.spacing.xxl};
-
-  border-radius: 28px;
-  border: 1px solid ${({ theme }) => theme.colors.border.default};
 
   background:
-    radial-gradient(circle at 15% 20%, rgba(1, 135, 98, 0.2), transparent 28%),
-    radial-gradient(circle at 85% 80%, rgba(0, 78, 155, 0.18), transparent 30%),
-    linear-gradient(135deg, #ffffff 0%, #f3fffb 45%, #dff2ed 100%);
+    linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.9) 0%,
+      rgba(255, 255, 255, 0.82) 42%,
+      rgba(255, 255, 255, 0.58) 100%
+    ),
+    linear-gradient(
+      135deg,
+      #ffffff 0%,
+      #f5b6c8 9%,
+      #5bcffb 18%,
+      #613915 27%,
+      #111111 36%,
+      #e40303 46%,
+      #ff8c00 56%,
+      #ffed00 66%,
+      #008026 76%,
+      #24408e 88%,
+      #732982 100%
+    );
+`;
 
+const Content = styled.div`
   display: grid;
   gap: ${({ theme }) => theme.spacing.xl};
 
+  padding: ${({ theme }) => theme.spacing.xxl} 0;
+
   @media (min-width: ${({ theme }) => theme.breakpoints.md}) {
-    grid-template-columns: 1.2fr 0.8fr;
+    grid-template-columns: 1.1fr 0.9fr;
     align-items: center;
   }
 `;
 
-const Content = styled.div`
-  position: relative;
-  z-index: 1;
-
+const TextContent = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
   gap: ${({ theme }) => theme.spacing.lg};
 `;
 
@@ -51,74 +60,96 @@ const Eyebrow = styled.span`
 
   color: ${({ theme }) => theme.colors.text.accent};
   font-weight: 800;
+
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
 `;
 
 const Title = styled.h2`
-  max-width: 720px;
+  max-width: 760px;
 
   color: ${({ theme }) => theme.colors.text.heading};
-  font-size: 2rem;
-  line-height: 1.2;
+  font-size: 2.25rem;
+  line-height: 1.15;
 
   @media (min-width: ${({ theme }) => theme.breakpoints.md}) {
-    font-size: 2.5rem;
+    font-size: 3rem;
   }
 `;
 
 const Description = styled.p`
-  max-width: 640px;
+  max-width: 680px;
 
   color: ${({ theme }) => theme.colors.text.body};
   font-size: 1.125rem;
   line-height: 1.6;
 `;
 
-const Visual = styled.div`
+const Graphic = styled.div`
+  min-height: 320px;
+
   position: relative;
-  z-index: 1;
-
-  padding: ${({ theme }) => theme.spacing.xl};
-
-  border-radius: 24px;
-  background: ${({ theme }) => theme.colors.background.default};
-
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
 
   display: flex;
-  flex-direction: column;
-  gap: ${({ theme }) => theme.spacing.md};
+  align-items: center;
+  justify-content: center;
 `;
 
-const VisualTitle = styled.strong`
-  color: ${({ theme }) => theme.colors.text.heading};
-  font-size: 1.25rem;
-`;
+const Orbit = styled.div`
+  width: min(340px, 80vw);
+  height: min(340px, 80vw);
 
-const VisualText = styled.p`
-  color: ${({ theme }) => theme.colors.text.body};
-  line-height: 1.5;
-`;
+  border-radius: 50%;
 
-const PrideLine = styled.div`
-  height: 6px;
-  border-radius: 999px;
+  background:
+    radial-gradient(circle, rgba(255, 255, 255, 0.92) 0 42%, transparent 43%),
+    conic-gradient(
+      from 90deg,
+      #e40303,
+      #ff8c00,
+      #ffed00,
+      #008026,
+      #24408e,
+      #732982,
+      #5bcffb,
+      #f5b6c8,
+      #ffffff,
+      #613915,
+      #111111,
+      #e40303
+    );
 
-  background: linear-gradient(
-    90deg,
-    #bc1c1c,
-    #e8a233,
-    #00b15c,
-    #4d8acb,
-    #28588a
-  );
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.18);
+
+  position: relative;
+
+  &::before {
+    content: "Cuidado";
+    position: absolute;
+    inset: 50% auto auto 50%;
+    transform: translate(-50%, -65%);
+
+    color: ${({ theme }) => theme.colors.text.accent};
+    font-weight: 900;
+    font-size: 1.75rem;
+  }
+
+  &::after {
+    content: "com respeito";
+    position: absolute;
+    inset: 50% auto auto 50%;
+    transform: translate(-50%, 35%);
+
+    color: ${({ theme }) => theme.colors.text.body};
+    font-weight: 700;
+  }
 `;
 
 export function CTASection() {
   return (
     <Section>
       <Container>
-        <Card>
-          <Content>
+        <Content>
+          <TextContent>
             <Eyebrow>Comece com segurança</Eyebrow>
 
             <Title>
@@ -131,19 +162,12 @@ export function CTASection() {
             </Description>
 
             <Button href="/profissionais">Encontrar profissionais</Button>
-          </Content>
+          </TextContent>
 
-          <Visual aria-label="Resumo do cuidado inclusivo">
-            <PrideLine aria-hidden="true" />
-
-            <VisualTitle>Atendimento inclusivo</VisualTitle>
-
-            <VisualText>
-              Uma experiência pensada para reduzir barreiras, fortalecer vínculos
-              e tornar o acesso à saúde mais humano.
-            </VisualText>
-          </Visual>
-        </Card>
+          <Graphic aria-hidden="true">
+            <Orbit />
+          </Graphic>
+        </Content>
       </Container>
     </Section>
   );
