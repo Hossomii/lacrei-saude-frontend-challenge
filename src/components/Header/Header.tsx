@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import styled from "styled-components";
+import { FiInfo } from "react-icons/fi";
 
 import { Button } from "../Button/Button";
 import { Container } from "../Layout/Container";
@@ -13,11 +14,11 @@ const Wrapper = styled.header`
   z-index: 10;
 
   border-bottom: 1px solid ${({ theme }) => theme.colors.border.default};
-  background: ${({ theme }) => theme.colors.background.default};
+  background: #f5fffb;
 `;
 
 const Content = styled.div`
-  min-height: 80px;
+  min-height: 72px;
 
   display: flex;
   align-items: center;
@@ -32,13 +33,16 @@ const Logo = styled(Link)`
 
   color: ${({ theme }) => theme.colors.text.accent};
   font-size: 1.25rem;
-  font-weight: 800;
+  font-weight: 900;
   line-height: 1;
+
+  @media (max-width: 767px) {
+    font-size: 1rem;
+  }
 `;
 
 const LogoSymbol = styled.span`
   color: ${({ theme }) => theme.colors.text.accent};
-
   font-size: 1.5rem;
   font-weight: 900;
   letter-spacing: -0.08em;
@@ -50,77 +54,80 @@ const LogoName = styled.span`
   color: ${({ theme }) => theme.colors.text.accent};
 `;
 
-const Navigation = styled.nav<{ $isOpen: boolean }>`
-  display: ${({ $isOpen }) => ($isOpen ? "flex" : "none")};
-  flex-direction: column;
-  gap: ${({ theme }) => theme.spacing.md};
-
-  position: absolute;
-  top: 80px;
-  left: 0;
-  right: 0;
-
-  padding: ${({ theme }) => theme.spacing.lg};
-  border-bottom: 1px solid ${({ theme }) => theme.colors.border.default};
-  background: ${({ theme }) => theme.colors.background.default};
-
-  @media (min-width: ${({ theme }) => theme.breakpoints.md}) {
-    position: static;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-
-    padding: 0;
-    border: 0;
-  }
-`;
-
-const NavLink = styled(Link)`
-  color: ${({ theme }) => theme.colors.text.body};
-  font-weight: 700;
-
-  &:hover {
-    color: ${({ theme }) => theme.colors.text.accent};
-  }
-
-  &:focus-visible {
-    outline: 3px solid ${({ theme }) => theme.colors.border.accent};
-    outline-offset: 3px;
-  }
-`;
-
-const Actions = styled.div`
+const DesktopArea = styled.div`
   display: none;
 
   @media (min-width: ${({ theme }) => theme.breakpoints.md}) {
     display: flex;
+    align-items: center;
+    gap: ${({ theme }) => theme.spacing.xl};
   }
 `;
 
-const MenuButton = styled.button`
-  display: inline-flex;
+const Navigation = styled.nav`
+  display: flex;
   align-items: center;
-  justify-content: center;
+  gap: ${({ theme }) => theme.spacing.xl};
+`;
 
-  min-width: 44px;
-  min-height: 44px;
+const NavLink = styled(Link)`
+  color: ${({ theme }) => theme.colors.text.accent};
+  font-weight: 700;
+  font-size: 0.95rem;
 
-  border: 1px solid ${({ theme }) => theme.colors.border.default};
-  border-radius: 8px;
-  background: ${({ theme }) => theme.colors.background.default};
-
+  &:hover {
   color: ${({ theme }) => theme.colors.text.heading};
-  font-size: 1.5rem;
-
-  cursor: pointer;
-
-  @media (min-width: ${({ theme }) => theme.breakpoints.md}) {
-    display: none;
   }
 
   &:focus-visible {
     outline: 3px solid ${({ theme }) => theme.colors.border.accent};
     outline-offset: 3px;
+  }
+`;
+
+const MobileArea = styled.div`
+  display: flex;
+  align-items: center;
+  gap: ${({ theme }) => theme.spacing.sm};
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.md}) {
+    display: none;
+  }
+`;
+
+const IconButton = styled.button`
+  width: 44px;
+  height: 44px;
+
+  border: 0;
+  border-radius: 50%;
+
+  background: transparent;
+  color: ${({ theme }) => theme.colors.text.accent};
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+
+  &:focus-visible {
+    outline: 3px solid ${({ theme }) => theme.colors.border.accent};
+    outline-offset: 3px;
+  }
+`;
+
+const MobileMenu = styled.nav<{ $isOpen: boolean }>`
+  display: ${({ $isOpen }) => ($isOpen ? "flex" : "none")};
+  flex-direction: column;
+  gap: ${({ theme }) => theme.spacing.md};
+
+  padding: ${({ theme }) => theme.spacing.lg};
+
+  border-top: 1px solid ${({ theme }) => theme.colors.border.default};
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.md}) {
+    display: none;
   }
 `;
 
@@ -133,33 +140,41 @@ export function Header() {
         <Content>
           <Logo href="/" aria-label="Página inicial da Lacrei Saúde">
             <LogoSymbol aria-hidden="true">LS</LogoSymbol>
-
             <LogoName>Lacrei Saúde</LogoName>
           </Logo>
 
-          <Navigation $isOpen={isMenuOpen} aria-label="Navegação principal">
-            <NavLink href="/" onClick={() => setIsMenuOpen(false)}>
-              Início
-            </NavLink>
+          <DesktopArea>
+            <Navigation aria-label="Navegação principal">
+              <NavLink href="/">Quem somos</NavLink>
+              <NavLink href="/">Ajuda</NavLink>
+            </Navigation>
 
-            <NavLink href="/profissionais" onClick={() => setIsMenuOpen(false)}>
-              Profissionais
-            </NavLink>
-          </Navigation>
+            <Button href="/profissionais">Entrar</Button>
+          </DesktopArea>
 
-          <Actions>
-            <Button href="/profissionais">Encontrar profissionais</Button>
-          </Actions>
+          <MobileArea>
+            <IconButton
+              type="button"
+              aria-label={isMenuOpen ? "Fechar menu" : "Abrir menu"}
+              aria-expanded={isMenuOpen}
+              onClick={() => setIsMenuOpen((current) => !current)}
+            >
+              <FiInfo aria-hidden="true" />
+            </IconButton>
 
-          <MenuButton
-            type="button"
-            aria-label={isMenuOpen ? "Fechar menu" : "Abrir menu"}
-            aria-expanded={isMenuOpen}
-            onClick={() => setIsMenuOpen((current) => !current)}
-          >
-            {isMenuOpen ? "×" : "☰"}
-          </MenuButton>
+            <Button href="/profissionais">Entrar</Button>
+          </MobileArea>
         </Content>
+
+        <MobileMenu $isOpen={isMenuOpen} aria-label="Navegação mobile">
+          <NavLink href="/" onClick={() => setIsMenuOpen(false)}>
+            Quem somos
+          </NavLink>
+
+          <NavLink href="/" onClick={() => setIsMenuOpen(false)}>
+            Ajuda
+          </NavLink>
+        </MobileMenu>
       </Container>
     </Wrapper>
   );

@@ -6,6 +6,7 @@ import { Button } from "@/components/Button/Button";
 import { InfoCard } from "@/components/InfoCard/InfoCard";
 import { Container } from "@/components/Layout/Container";
 import { professionals } from "@/data/professionals";
+import { FiSearch } from "react-icons/fi";
 
 const Main = styled.main``;
 
@@ -73,6 +74,61 @@ const SectionText = styled.p`
   line-height: 1.6;
 `;
 
+const SearchBox = styled.form`
+  margin-bottom: ${({ theme }) => theme.spacing.xl};
+
+  padding: ${({ theme }) => theme.spacing.lg};
+
+  border: 1px solid ${({ theme }) => theme.colors.border.default};
+  border-radius: 16px;
+
+  background: ${({ theme }) => theme.colors.background.default};
+
+  display: grid;
+  gap: ${({ theme }) => theme.spacing.md};
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.md}) {
+    grid-template-columns: 1fr auto;
+    align-items: center;
+  }
+`;
+
+const InputWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  gap: ${({ theme }) => theme.spacing.sm};
+
+  min-height: 52px;
+  padding: 0 ${({ theme }) => theme.spacing.md};
+
+  border: 1px solid ${({ theme }) => theme.colors.border.default};
+  border-radius: 12px;
+
+  background: ${({ theme }) => theme.colors.background.subtle};
+
+  color: ${({ theme }) => theme.colors.text.body};
+
+  &:focus-within {
+    border-color: ${({ theme }) => theme.colors.border.accent};
+    outline: 3px solid rgba(1, 135, 98, 0.18);
+  }
+`;
+
+const SearchInput = styled.input`
+  width: 100%;
+
+  border: 0;
+  outline: 0;
+  background: transparent;
+
+  color: ${({ theme }) => theme.colors.text.heading};
+  font-size: 1rem;
+
+  &::placeholder {
+    color: ${({ theme }) => theme.colors.text.body};
+  }
+`;
+
 const Grid = styled.div`
   display: grid;
   gap: ${({ theme }) => theme.spacing.lg};
@@ -113,6 +169,23 @@ export default function ProfessionalsPage() {
               integração com API.
             </SectionText>
           </SectionHeader>
+
+          <SearchBox
+            aria-label="Busca simulada por profissionais"
+            onSubmit={(event) => event.preventDefault()}
+          >
+            <InputWrapper>
+              <FiSearch aria-hidden="true" />
+
+              <SearchInput
+                type="search"
+                placeholder="Busque por especialidade, cidade ou tipo de atendimento"
+                aria-label="Buscar profissionais"
+              />
+            </InputWrapper>
+
+            <Button>Pesquisar</Button>
+          </SearchBox>
 
           <Grid>
             {professionals.map((professional) => (
