@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Providers } from "@/lib/providers";
 import { Header } from "@/components/Header/Header";
 import { Footer } from "@/components/Footer/Footer";
+import { CookieBanner } from "@/components/CookieBanner/CookieBanner";
 
 export const metadata: Metadata = {
   title: "Lacrei Saúde | Desafio Front-end",
@@ -21,6 +22,7 @@ export default function RootLayout({
           <Header />
           {children}
           <Footer />
+          <CookieBanner />
         </Providers>
       </body>
     </html>
